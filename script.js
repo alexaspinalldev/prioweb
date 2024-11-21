@@ -10,9 +10,12 @@ function taskAddition(e) {
     const warningText = document.getElementById("warningText");
 
     if (taskInput.value.trim()) {
-        let newListElement = document.createElement("div");
-        newListElement.innerHTML = `<li>${taskInput.value.trim()}</li><button><i class="fa-solid fa-check"></i></button>`;
-        openTasks.appendChild(newListElement);
+        let newListItem = document.createElement("div");
+        newListItem.classList.add("list-item")
+        newListItem.innerHTML = `<li>${taskInput.value.trim()}</li>
+        <button type="submit" class="btn button btn-success" id="completeTaskBtn"><i class="fa-solid fa-check"></i></button>
+        <button type="submit" class="btn button btn-danger" id="cancelTaskBtn"><i class="fa-solid fa-x"></i></button>`;
+        openTasks.appendChild(newListItem);
         
         taskInput.value = "";
         // warningText.innerText = "";

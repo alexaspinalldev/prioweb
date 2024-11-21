@@ -35,13 +35,13 @@ form input {
     color: darkred;
 }
 
-form button {
+.button {
     width: 40px;
     height: 80%;
-    margin: 0 12px;
+    margin-left: 12px;
     align-self: center;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1rem;
 
 }
 
@@ -53,15 +53,26 @@ form button {
 
 
 .task-list {
-    min-height: 10vh;
+    min-height: 12vh;
     list-style-type: none;
+    background-color: #13191b;
+    border-radius: var(--bs-border-radius-lg);
+    border: 2px solid #253237;
+    padding: 10px;
+}
+
+.list-item {
+    display: flex;
+    margin-bottom: .5rem;
+    
 }
 
 .task-list li {
-    border: .5px solid white;
+    border: .5px solid #FFF;
     border-radius: var(--bs-border-radius-lg);
     padding: .5rem .75rem;
     font-size: 1rem;
-    margin-bottom: .5rem;
+    flex-grow: 1;
 
 }
+
