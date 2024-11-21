@@ -12,7 +12,36 @@ body {
     font-family: 'Comfortaa', sans-serif;
 }
 
-h1, h2, h3 {
-    /* font-family: 'Righteous', monospace; */
+h1 {
+    font-family: 'Righteous', monospace;
 }
 
+main {
+    margin-top: 25vh;
+}
+
+form {
+    display: flex;
+    margin-top: 5vh;
+}
+
+form input {
+    flex-grow: 1;
+    background-color: transparent;
+    color: #FFF;
+}
+
+form button {
+    width: 40px;
+    height: 80%;
+    margin: 0 12px;
+    align-self: center;
+    text-align: center;
+    font-size: 2rem;
+
+}
+
+
+#openTasks, #pastTasks {
+    min-height: 10vh;
+}
