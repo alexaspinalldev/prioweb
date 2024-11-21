@@ -57,7 +57,7 @@ form input {
     list-style-type: none;
     padding: 10px;
     /* background-color: #13191b; */
-    background: linear-gradient(0deg, rgba(19, 25, 27,1) 0%, rgba(19, 25, 27,0) 100%);
+    background: linear-gradient(180deg, rgba(19, 25, 27,1) 0%, rgba(19, 25, 27,0) 100%);
     border-radius: var(--bs-border-radius-lg);
     /* border: 2px solid #253237; */
     border-style: solid;
