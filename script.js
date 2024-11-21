@@ -1,8 +1,30 @@
 // Element references
-const taskInput = document.getElementById("taskInput")
+
 const addNewTaskBtn = document.getElementById("addNewTaskBtn")
-const openTasks = document.getElementById("openTasks")
-const completeTasks = document.getElementById("completeTasks")
+addNewTaskBtn.addEventListener("click", taskAddition)
+
+function taskAddition(e) {
+    e.preventDefault(); // Prevent form submission
+    
+    const taskInput = document.getElementById("taskInput");
+    const openTasks = document.getElementById("openTaskList");
+    const warningText = document.getElementById("warningText");
+
+    if (taskInput.value.trim()) {
+        let newListElement = document.createElement("li");
+        newListElement.innerText = taskInput.value.trim();
+        openTasks.appendChild(newListElement);
+        
+        taskInput.value = ""; // Clear the input box after adding the task
+        warningText.innerText = ""; // Clear the warning text if previously shown
+    } else {
+        warningText.innerText = "Task is missing content";
+    }
+}
+
+// const pastTasks = document.getElementById("pastTaskList")
+
+
 
 // Event listeners to catch the Add Task click
     // button click

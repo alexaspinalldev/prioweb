@@ -41,7 +41,23 @@ form button {
 
 }
 
+#warningText {
+    text-align: left;
+    color: darkred;
+    margin-top: .4rem;
+}
 
-#openTasks, #pastTasks {
+
+.task-list {
     min-height: 10vh;
+    list-style-type: none;
+}
+
+.task-list li {
+    border: .5px solid white;
+    border-radius: var(--bs-border-radius-lg);
+    padding: .5rem .75rem;
+    font-size: 1rem;
+    margin-bottom: .5rem;
+
 }
