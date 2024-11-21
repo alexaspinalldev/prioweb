@@ -55,11 +55,16 @@ form input {
 .task-list {
     min-height: 12vh;
     list-style-type: none;
-    background-color: #13191b;
-    border-radius: var(--bs-border-radius-lg);
-    border: 2px solid #253237;
     padding: 10px;
-}
+    /* background-color: #13191b; */
+    background: linear-gradient(0deg, rgba(19, 25, 27,1) 0%, rgba(19, 25, 27,0) 100%);
+    border-radius: var(--bs-border-radius-lg);
+    /* border: 2px solid #253237; */
+    border-style: solid;
+    border-width: 2px;
+    border-image-source: linear-gradient(180deg, rgba(37,50,55,1) 0%, rgba(37,50,55,0) 100%);
+    border-image-slice: 1;
+    background-clip: padding-box;}
 
 .list-item {
     display: flex;
