@@ -1,29 +1,38 @@
-// Element references
-
+// New tasks
 const addNewTaskBtn = document.getElementById("addNewTaskBtn")
 addNewTaskBtn.addEventListener("click", taskAddition)
 
 function taskAddition(e) {
-    e.preventDefault(); // Prevent form submission
+    e.preventDefault();
     
     const taskInput = document.getElementById("taskInput");
     const openTasks = document.getElementById("openTaskList");
     const warningText = document.getElementById("warningText");
 
     if (taskInput.value.trim()) {
-        let newListElement = document.createElement("li");
-        newListElement.innerText = taskInput.value.trim();
+        let newListElement = document.createElement("div");
+        newListElement.innerHTML = `<li>${taskInput.value.trim()}</li><button><i class="fa-solid fa-check"></i></button>`;
         openTasks.appendChild(newListElement);
         
-        taskInput.value = ""; // Clear the input box after adding the task
-        warningText.innerText = ""; // Clear the warning text if previously shown
+        taskInput.value = "";
+        // warningText.innerText = "";
+        taskInput.placeholder = "What do you need to do?";
+        taskInput.classList.toggle("warning");
     } else {
-        warningText.innerText = "Task is missing content";
+        // warningText.innerText = "Task is missing content";
+        taskInput.placeholder = "Task is missing content!";
+        taskInput.classList.toggle("warning");
+
     }
 }
 
-// const pastTasks = document.getElementById("pastTaskList")
+//Complete tasks
+// Event listener for complete btn
 
+function taskComplete(e) {
+    const pastTasks = document.getElementById("pastTaskList")
+
+}
 
 
 // Event listeners to catch the Add Task click

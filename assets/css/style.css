@@ -31,6 +31,10 @@ form input {
     color: #FFF;
 }
 
+.warning::placeholder {
+    color: darkred;
+}
+
 form button {
     width: 40px;
     height: 80%;
@@ -41,11 +45,11 @@ form button {
 
 }
 
-#warningText {
+/* #warningText {
     text-align: left;
     color: darkred;
     margin-top: .4rem;
-}
+} */
 
 
 .task-list {
