@@ -17,11 +17,11 @@ function taskAddition(e) {
         taskInput.value = "";
         // warningText.innerText = "";
         taskInput.placeholder = "What do you need to do?";
-        taskInput.classList.toggle("warning");
+        taskInput.classList.remove("warning");
     } else {
         // warningText.innerText = "Task is missing content";
         taskInput.placeholder = "Task is missing content!";
-        taskInput.classList.toggle("warning");
+        taskInput.classList.add("warning");
 
     }
 }
