@@ -6,6 +6,10 @@
     padding: 0;
 }
 
+#header {
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);}
+
 body {
     color: #FFF;
     background-color: #000;
@@ -53,7 +57,7 @@ form input {
 
 
 .task-list {
-    min-height: 12vh;
+    min-height: 15vh;
     list-style-type: none;
     padding: 10px;
     /* background-color: #13191b; */
