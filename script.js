@@ -53,7 +53,7 @@ function taskComplete(e) {
 // Delete task
 function taskCancel(e) {
     if (confirm("Cancel this task?")) {
-    const taskToDelete = e.target.parentNode;
+    const taskToDelete = e.target.closest(".list-item");
     taskToDelete.parentNode.removeChild(taskToDelete);
     taskInput.focus();
     }
