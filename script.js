@@ -44,17 +44,27 @@ function taskAddition(e) {
 
 // Complete tasks
 function taskComplete(e) {
-    //Grab the content of the sibling?? li as a variable
-    //append it to past tasks
-    //delete it from open tasks
-    //focus on input
+    if (confirm("Mark this task complete?")) {
+        const taskToComplete = e.target.closest('.list-item');
+        const completedTask = taskToComplete.querySelector('li');
+
+        // Create a new div in the Past Tasks section
+        let newListItem = document.createElement("div");
+        newListItem.classList.add("list-item")
+        newListItem.innerHTML = `<li>${completedTask.textContent}</li>`;
+        pastTasks.appendChild(newListItem);
+        
+        //Remove the old task from the old list
+        taskToComplete.parentNode.removeChild(taskToComplete);
+        taskInput.focus();
+    }
 }
 
 // Delete task
 function taskCancel(e) {
     if (confirm("Cancel this task?")) {
-    const taskToDelete = e.target.closest(".list-item");
-    taskToDelete.parentNode.removeChild(taskToDelete);
-    taskInput.focus();
+        const taskToDelete = e.target.closest(".list-item");
+        taskToDelete.parentNode.removeChild(taskToDelete);
+        taskInput.focus();
     }
 }
