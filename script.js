@@ -18,11 +18,14 @@ function taskAddition(e) {
         //Create a new list item
         let newListItem = document.createElement("div");
         newListItem.classList.add("list-item")
+        newListItem.classList.add("task-effect-in")
         newListItem.innerHTML = `<li>${taskInput.value.trim()}</li>
         <button type="button" class="btn button btn-success" id="completeTaskBtn"><i class="fa-solid fa-check"></i></button>
         <button type="button" class="btn button btn-danger" id="cancelTaskBtn"><i class="fa-solid fa-x"></i></button>`;
         openTasks.appendChild(newListItem);
-        
+        requestAnimationFrame(() => {
+            newListItem.classList.add("effect-static")})
+
         //Reset the input box
         taskInput.value = "";
         taskInput.placeholder = "What do you need to do?";
@@ -51,8 +54,11 @@ function taskComplete(e) {
         // Create a new div in the Past Tasks section
         let newListItem = document.createElement("div");
         newListItem.classList.add("list-item")
+        newListItem.classList.add("task-effect-in")
         newListItem.innerHTML = `<li>${completedTask.textContent}</li>`;
         pastTasks.appendChild(newListItem);
+        requestAnimationFrame(() => {
+            newListItem.classList.add("effect-static")})
         
         //Remove the old task from the old list
         taskToComplete.parentNode.removeChild(taskToComplete);
@@ -64,7 +70,23 @@ function taskComplete(e) {
 function taskCancel(e) {
     if (confirm("Cancel this task?")) {
         const taskToDelete = e.target.closest(".list-item");
-        taskToDelete.parentNode.removeChild(taskToDelete);
+
+        // Remove conflicting classes?
+        taskToDelete.classList.remove("task-effect-in");
+
+        // NOT CONVINCED THIS IS WORKING CONSISTENTLY
+
+        // Add the "task-effect-out" class to start the animation
+        requestAnimationFrame(() => {
+            taskToDelete.classList.add("task-effect-out");
+
+            // Wait for the animation to complete before removing the element
+            taskToDelete.addEventListener("transitionend", () => {
+                taskToDelete.parentNode.removeChild(taskToDelete);
+            }, {
+                once: true
+            }); // { once: true } ensures the listener runs only once
+        })
         taskInput.focus();
     }
 }
