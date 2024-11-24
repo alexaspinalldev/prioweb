@@ -73,13 +73,13 @@ form input {
 .list-item {
     display: flex;
     margin-bottom: .5rem;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Smooth slide-in effect */
     
 }
 
 .task-effect-in {
     transform: translateY(-100%); /* Start off top of screem */
     opacity: 0;
-    transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Smooth slide-in effect */
 }
 
 .task-effect-in.effect-static {
@@ -88,8 +88,8 @@ form input {
 }
 
 .task-effect-out {
+    transform: translateY(-100%); /* End off top of screem */
     opacity: 0;
-    transition: opacity 0.5s ease-in; /* Fade out effect */
 
     /* NOT CONVINCED THIS IS WORKING CONSISTENTLY */
 
