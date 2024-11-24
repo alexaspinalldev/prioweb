@@ -3,6 +3,8 @@ const addNewTaskBtnLow = document.getElementById("addNewTaskBtn-LOW")
 const addNewTaskBtnMed = document.getElementById("addNewTaskBtn-MED")
 const addNewTaskBtnHig = document.getElementById("addNewTaskBtn-HIG")
 addNewTaskBtnLow.addEventListener("click", taskAddition)
+addNewTaskBtnMed.addEventListener("click", taskAddition)
+addNewTaskBtnHig.addEventListener("click", taskAddition)
 
 
 
@@ -23,7 +25,7 @@ function taskAddition(e) {
         newListItem.classList.add("task-effect-in")
         newListItem.innerHTML = `<li>${taskInput.value.trim()}</li>
         <button type="button" class="btn button btn-success" id="completeTaskBtn"><i class="fa-solid fa-check"></i></button>
-        <button type="button" class="btn button btn-danger" id="cancelTaskBtn"><i class="fa-solid fa-x"></i></button>`;
+        <button type="button" class="btn button btn-danger" id="cancelTaskBtn"><i class="fa-solid fa-trash-can"></i></button>`;
         openTasks.appendChild(newListItem);
         requestAnimationFrame(() => {
             newListItem.classList.add("effect-static")})
