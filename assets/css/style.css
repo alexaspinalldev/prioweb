@@ -49,6 +49,44 @@ form input {
 
 }
 
+.task-button {
+}
+
+.task-button-cont {
+    display: flex;
+    position: relative;
+}
+
+.addNewTaskBtn-LOW {
+    z-index: 3;
+}
+
+.addNewTaskBtn-MED {
+    z-index: 2;
+    /* position: absolute;
+    left: 0;
+    transition: left 0.5s ease-out, bottom 0.5s ease-out; */
+}
+
+.addNewTaskBtn-HIG {
+    z-index: 1;
+    /* position: absolute;
+    left: 0;
+    transition: left 0.5s ease-out, top 0.5s ease-out; */
+}
+
+/* .task-button-cont:hover .addNewTaskBtn-MED {
+    left: 52px;
+    bottom: 30px;
+}
+
+.task-button-cont:hover .addNewTaskBtn-HIG {
+    left: 52px;
+    top: 30px;
+} */
+
+
+
 /* #warningText {
     text-align: left;
     color: darkred;

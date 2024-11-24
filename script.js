@@ -1,6 +1,8 @@
 // New tasks button listener
-const addNewTaskBtn = document.getElementById("addNewTaskBtn")
-addNewTaskBtn.addEventListener("click", taskAddition)
+const addNewTaskBtnLow = document.getElementById("addNewTaskBtn-LOW")
+const addNewTaskBtnMed = document.getElementById("addNewTaskBtn-MED")
+const addNewTaskBtnHig = document.getElementById("addNewTaskBtn-HIG")
+addNewTaskBtnLow.addEventListener("click", taskAddition)
 
 
 
