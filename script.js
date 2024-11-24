@@ -1,4 +1,4 @@
-// New tasks button listener
+// New tasks buttons listeners
 const addNewTaskBtnLow = document.getElementById("addNewTaskBtn-LOW")
 const addNewTaskBtnMed = document.getElementById("addNewTaskBtn-MED")
 const addNewTaskBtnHig = document.getElementById("addNewTaskBtn-HIG")
@@ -18,6 +18,8 @@ const pastTasks = document.getElementById("pastTaskList");
 // New tasks
 function taskAddition(e) {
     e.preventDefault();
+    // console.log(e) There must be a way to use (e) to get the ID of the nearest button and use that to add a priority to the task - even if it's just colour to start with
+    
     if (taskInput.value.trim()) {
         //Create a new list item
         let newListItem = document.createElement("div");
