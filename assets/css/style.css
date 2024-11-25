@@ -47,6 +47,7 @@ form input {
     text-align: center;
     font-size: 1rem;
     text-shadow: 0 0 3px #797979;
+    --bs-btn-hover-color: var(--bs-white);
 
 }
 
