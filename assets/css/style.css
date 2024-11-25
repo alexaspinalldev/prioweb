@@ -46,6 +46,7 @@ form input {
     align-self: center;
     text-align: center;
     font-size: 1rem;
+    text-shadow: 0 0 3px #797979;
 
 }
 
@@ -55,6 +56,8 @@ form input {
 .task-button-cont {
     display: flex;
     position: relative;
+    flex-grow: 0;
+    justify-content: flex-end;
 }
 
 .addNewTaskBtn-LOW {
@@ -63,6 +66,7 @@ form input {
 
 .addNewTaskBtn-MED {
     z-index: 2;
+    color: #FFF;
     /* position: absolute;
     left: 0;
     transition: left 0.5s ease-out, bottom 0.5s ease-out; */
