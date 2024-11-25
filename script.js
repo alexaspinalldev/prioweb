@@ -108,3 +108,23 @@ function taskCancel(e) {
         taskInput.focus();
     }
 }
+
+// Minimise header on scroll
+window.addEventListener("scroll", () => {
+    const scrollPointDown = 210;
+    const scrollPointUp = 185;
+    const logo = document.querySelector("#logo");
+    const subheading = document.querySelector("#subheading");
+    console.log(window.scrollY)
+    if (window.scrollY > scrollPointDown) {
+        logo.classList.add("minimise-logo");
+        subheading.classList.add("subhead-hide");
+    }
+    if (window.scrollY <= scrollPointUp){
+        logo.classList.remove("minimise-logo");
+        subheading.classList.remove("subhead-hide");
+    }
+    {
+    once: true
+    }
+});

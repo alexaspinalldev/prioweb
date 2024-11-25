@@ -8,7 +8,19 @@
 
 #header {
     background: rgb(0,0,0);
-    background: linear-gradient(180deg, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);}
+    background: linear-gradient(180deg, rgba(0,0,0,1) 55%, rgba(0,0,0,0) 100%);
+    /* height: 141px; */
+    /* transition: font-size .5s ease-out; */
+}
+
+.minimise-logo {
+    font-size: 300%;
+    transition: font-size .3s ease-out;
+}
+
+.subhead-hide {
+    display: none;
+}
 
 body {
     color: #FFF;
@@ -21,7 +33,7 @@ h1 {
 }
 
 main {
-    margin-top: 20vh;
+    margin-top: 18vh;
 }
 
 form {
@@ -156,6 +168,27 @@ form input {
     border: 1px solid #FFF;
 }
 
+/* --------------- FOOTER --------------- */
+
+footer {
+}
+
+#copyright {
+    font-size: .75rem;
+}
+
+#fa-github {
+    font-size: 1.25rem;
+}
+
+#fa-github:hover {
+    color: #198754;
+    transition: color .2s ease-out, font-size .2s ease-out;
+    font-size: 1.5rem;
+}
+
+
+/* --------------- Media Queries --------------- */
 @media screen and (min-width: 576px) {
     .task-button-cont {
         flex-direction: row;
