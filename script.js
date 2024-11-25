@@ -24,13 +24,22 @@ function taskAddition(e) {
     if (taskInput.value.trim()) {
         //Create a new list item
         let newListItem = document.createElement("div");
+        let priority = e.target.closest("button").id;
         newListItem.classList.add("list-item")
 
-        // Style according to priority
-        // if object.property(priority) is high/medium/low
-        // newListItem.classList.add("task-hi");
-        // newListItem.classList.add("task-md");
-        newListItem.classList.add("task-lw");
+        // Classify and style according to priority
+        switch (priority) {
+            case "addNewTaskBtn-LOW":
+            newListItem.classList.add("task-lw");
+            break;
+
+            case "addNewTaskBtn-MED":
+            newListItem.classList.add("task-md");
+            break;
+
+            case "addNewTaskBtn-HIG":
+            newListItem.classList.add("task-hi");
+        }
 
         newListItem.classList.add("task-effect-in")
         newListItem.innerHTML = `<li>${taskInput.value.trim()}</li>
