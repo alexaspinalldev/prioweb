@@ -148,3 +148,7 @@ form input {
     border: 1px solid #198754;
 }
 
+.task-comp li {
+    border: 1px solid #FFF;
+}
+

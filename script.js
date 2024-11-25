@@ -77,6 +77,7 @@ function taskComplete(e) {
         // Create a new div in the Past Tasks section
         let newListItem = document.createElement("div");
         newListItem.classList.add("list-item")
+        newListItem.classList.add("task-comp")
         newListItem.classList.add("task-effect-in")
         newListItem.innerHTML = `<li>${completedTask.textContent}</li>`;
         pastTasks.appendChild(newListItem);
