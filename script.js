@@ -18,12 +18,20 @@ const pastTasks = document.getElementById("pastTaskList");
 // New tasks
 function taskAddition(e) {
     e.preventDefault();
-    // console.log(e) There must be a way to use (e) to get the ID of the nearest button and use that to add a priority to the task - even if it's just colour to start with
+    // console.log(e)
+    //There must be a way to use (e) to get the ID of the nearest button and use that to add a priority to the task - even if it's just colour to start with
     
     if (taskInput.value.trim()) {
         //Create a new list item
         let newListItem = document.createElement("div");
         newListItem.classList.add("list-item")
+
+        // Style according to priority
+        // if object.property(priority) is high/medium/low
+        // newListItem.classList.add("task-hi");
+        // newListItem.classList.add("task-md");
+        newListItem.classList.add("task-lw");
+
         newListItem.classList.add("task-effect-in")
         newListItem.innerHTML = `<li>${taskInput.value.trim()}</li>
         <button type="button" class="btn button btn-success" id="completeTaskBtn"><i class="fa-solid fa-check"></i></button>

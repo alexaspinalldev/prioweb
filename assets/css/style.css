@@ -85,14 +85,7 @@ form input {
     top: 30px;
 } */
 
-
-
-/* #warningText {
-    text-align: left;
-    color: darkred;
-    margin-top: .4rem;
-} */
-
+/* --------------- TASK LISTS --------------- */
 
 .task-list {
     min-height: 15vh;
@@ -111,12 +104,12 @@ form input {
 .list-item {
     display: flex;
     margin-bottom: .5rem;
-    transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Smooth slide-in effect */
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Smooth slide-in and out effect */
     
 }
 
 .task-effect-in {
-    transform: translateY(-100%); /* Start off top of screem */
+    transform: translateY(-100%); /* Start down from top of screem */
     opacity: 0;
 }
 
@@ -126,20 +119,27 @@ form input {
 }
 
 .task-effect-out {
-    transform: translateY(-100%); /* End off top of screem */
+    transform: translateY(-100%); /* Slide off top of screen */
     opacity: 0;
-
-    /* NOT CONVINCED THIS IS WORKING CONSISTENTLY */
-
 
 }
 
 .task-list li {
-    border: .5px solid #FFF;
     border-radius: var(--bs-border-radius-lg);
     padding: .5rem .75rem;
     font-size: 1rem;
     flex-grow: 1;
+}
 
+.task-hi li {
+    border: .5px solid #dc3545;
+}
+
+.task-md li {
+    border: .5px solid #ffc107;
+}
+
+.task-lw li {
+    border: 1px solid #198754;
 }
 
