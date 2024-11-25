@@ -18,9 +18,6 @@ const pastTasks = document.getElementById("pastTaskList");
 // New tasks
 function taskAddition(e) {
     e.preventDefault();
-    // console.log(e)
-    //There must be a way to use (e) to get the ID of the nearest button and use that to add a priority to the task - even if it's just colour to start with
-    
     if (taskInput.value.trim()) {
         //Create a new list item
         let newListItem = document.createElement("div");
@@ -95,11 +92,8 @@ function taskCancel(e) {
     if (confirm("Cancel this task?")) {
         const taskToDelete = e.target.closest(".list-item");
 
-        // Remove conflicting classes?
+        // Remove conflicting classes
         taskToDelete.classList.remove("task-effect-in");
-
-        // NOT CONVINCED THIS IS WORKING CONSISTENTLY
-
         // Add the "task-effect-out" class to start the animation
         requestAnimationFrame(() => {
             taskToDelete.classList.add("task-effect-out");
