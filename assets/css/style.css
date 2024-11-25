@@ -137,11 +137,11 @@ form input {
 }
 
 .task-hi li {
-    border: .5px solid #dc3545;
+    border: 1px solid #dc3545;
 }
 
 .task-md li {
-    border: .5px solid #ffc107;
+    border: 1px solid #ffc107;
 }
 
 .task-lw li {
