@@ -106,11 +106,13 @@ form input {
     border-width: 2px;
     border-image-source: linear-gradient(180deg, rgba(37,50,55,1) 0%, rgba(37,50,55,0) 100%);
     border-image-slice: 1;
-    background-clip: padding-box;}
+    background-clip: padding-box;
+}
 
 .list-item {
     display: flex;
     margin-bottom: .5rem;
+    gap: 12px;
     transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Smooth slide-in and out effect */
     
 }
