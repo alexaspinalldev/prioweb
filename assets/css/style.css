@@ -42,7 +42,6 @@ form input {
 .button {
     width: 40px;
     height: 80%;
-    margin-left: 12px;
     align-self: center;
     text-align: center;
     font-size: 1rem;
@@ -57,8 +56,11 @@ form input {
 .task-button-cont {
     display: flex;
     position: relative;
-    flex-grow: 0;
+    /* flex-grow: 0; */
     justify-content: flex-end;
+    flex-direction: column;
+    gap: 12px;
+    padding-left: 12px;
 }
 
 .addNewTaskBtn-LOW {
@@ -152,3 +154,9 @@ form input {
     border: 1px solid #FFF;
 }
 
+@media screen and (min-width: 576px) {
+    .task-button-cont {
+        flex-direction: row;
+    }
+    
+}
