@@ -83,7 +83,7 @@ function taskComplete(e) {
         
         //Remove the old task from the old list
         taskToComplete.parentNode.removeChild(taskToComplete);
-        taskInput.focus();
+        // taskInput.focus();
     }
 }
 
@@ -105,7 +105,7 @@ function taskCancel(e) {
                 once: true
             }); // { once: true } ensures the listener runs only once
         })
-        taskInput.focus();
+        // taskInput.focus();
     }
 }
 
