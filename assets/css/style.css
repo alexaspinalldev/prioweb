@@ -13,10 +13,23 @@
     /* transition: font-size .5s ease-out; */
 }
 
+#logo {
+    transition: font-size .2s ease-out;
+}
+
+#subheading {
+    transition: opacity .2s ease-out;
+    display: block;
+}
+
 .minimise-logo {
     font-size: 300%;
     transition: font-size .3s ease-out;
 }
+
+.subhead-opac {
+    opacity: 0;
+    transition: opacity .2s ease-out;}
 
 .subhead-hide {
     display: none;

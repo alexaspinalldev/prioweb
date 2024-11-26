@@ -117,19 +117,22 @@ function taskCancel(e) {
 
 // Minimise header on scroll
 window.addEventListener("scroll", () => {
-    const scrollPointDown = 4;
-    const scrollPointUp = 16;
-    const targetElement = document.querySelector("#logo");
-    elementTop = Math.floor(targetElement.getBoundingClientRect().top);
-    console.log(elementTop)
+    const logo = document.querySelector("#logo");
+    const subheading = document.querySelector("#subheading");
+    const scrollPointDown = 170;
+    const scrollPointUp = 170;
+    const targetElement = document.querySelector("#taskInput");
+    const elementTop = Math.floor(targetElement.getBoundingClientRect().top);
     if (elementTop <= scrollPointDown) {
         logo.classList.add("minimise-logo");
-        subheading.classList.add("subhead-hide");
+        subheading.classList.add("subhead-opac");
+        subheading.addEventListener("transitionend", () => {
+            subheading.classList.add("subhead-hide")});
+        ;
     }
     if (elementTop > scrollPointUp){
         logo.classList.remove("minimise-logo");
         subheading.classList.remove("subhead-hide");
+        subheading.classList.remove("subhead-opac");
     }
-    {
-        once: true
-    };})
+});
