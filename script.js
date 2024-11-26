@@ -73,7 +73,7 @@ function taskAddition(e) {
 
 // Complete tasks
 function taskComplete(e) {
-    taskInput.blur()
+    taskInput.blur();
     if (confirm("Mark this task complete?")) {
         const taskToComplete = e.target.closest('.list-item');
         const completedTask = taskToComplete.querySelector('li');
@@ -96,7 +96,7 @@ function taskComplete(e) {
 
 // Delete task
 function taskCancel(e) {
-    taskInput.blur()
+    taskInput.blur();
     if (confirm("Cancel this task?")) {
         const taskToDelete = e.target.closest(".list-item");
 
