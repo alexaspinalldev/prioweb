@@ -13,8 +13,9 @@
     /* transition: font-size .5s ease-out; */
 }
 
-#logo {
-    transition: font-size .2s ease-out;
+.logo {
+    transition: height .2s ease-out;
+    height: 60px;
 }
 
 #subheading {
@@ -23,8 +24,7 @@
 }
 
 .minimise-logo {
-    font-size: 300%;
-    transition: font-size .3s ease-out;
+    height: 39px;
 }
 
 .subhead-opac {
