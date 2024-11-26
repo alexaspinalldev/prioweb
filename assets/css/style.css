@@ -27,11 +27,11 @@
     height: 39px;
 }
 
-.subhead-opac {
+.zero-opac {
     opacity: 0;
     transition: opacity .2s ease-out;}
 
-.subhead-hide {
+.element-hide {
     display: none;
 }
 
@@ -54,10 +54,12 @@ form {
     margin-top: 5vh;
 }
 
-form input {
+form textarea {
     flex-grow: 1;
     background-color: transparent;
     color: #FFF;
+    overflow: hidden;
+    resize: none;
 }
 
 .warning::placeholder {
@@ -66,7 +68,7 @@ form input {
 
 .button {
     width: 40px;
-    height: 80%;
+    height: 40px;
     align-self: center;
     text-align: center;
     font-size: 1rem;
@@ -132,6 +134,7 @@ form input {
     border-image-source: linear-gradient(180deg, rgba(37,50,55,1) 0%, rgba(37,50,55,0) 100%);
     border-image-slice: 1;
     background-clip: padding-box;
+    text-align: left;
 }
 
 .list-item {

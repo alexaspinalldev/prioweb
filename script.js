@@ -1,5 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {
-    taskInput.focus()});
+// document.addEventListener("DOMContentLoaded", () => {
+//     taskInput.focus()});
 
 // New tasks buttons listeners
 const addNewTaskBtnLow = document.getElementById("addNewTaskBtn-LOW")
@@ -18,6 +18,18 @@ const pastTasks = document.getElementById("pastTaskList");
 
 
 ////Functions///
+// Resize input box
+taskInput.addEventListener("input", () => {
+    console.log("input")
+        // Reset the height to calculate the scroll height accurately
+        taskInput.style.height = "auto";
+
+        // Set the height to match the content
+        taskInput.style.height = `${taskInput.scrollHeight}px`;
+        console.log("resize")
+})
+
+
 // New tasks
 function taskAddition(e) {
     e.preventDefault();
@@ -56,6 +68,7 @@ function taskAddition(e) {
         taskInput.value = "";
         taskInput.placeholder = "What do you need to do?";
         taskInput.classList.remove("warning");
+        taskInput.style.height = "auto";
         taskInput.focus();
 
         // Register the new buttons as event listeners
@@ -127,14 +140,14 @@ window.addEventListener("scroll", () => {
     const elementTop = Math.floor(targetElement.getBoundingClientRect().top);
     if (elementTop <= scrollPointDown) {
         logo.classList.add("minimise-logo");
-        subheading.classList.add("subhead-opac");
+        subheading.classList.add("zero-opac");
         subheading.addEventListener("transitionend", () => {
-            subheading.classList.add("subhead-hide")});
+            subheading.classList.add("element-hide")});
         ;
     }
     if (elementTop > scrollPointUp){
         logo.classList.remove("minimise-logo");
-        subheading.classList.remove("subhead-hide");
-        subheading.classList.remove("subhead-opac");
+        subheading.classList.remove("element-hide");
+        subheading.classList.remove("zero-opac");
     }
 });
