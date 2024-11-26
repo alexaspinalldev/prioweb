@@ -120,7 +120,7 @@ window.addEventListener("scroll", () => {
     const scrollPointDown = 4;
     const scrollPointUp = 16;
     const targetElement = document.querySelector("#logo");
-    elementTop = targetElement.getBoundingClientRect.floor().top
+    elementTop = Math.floor(targetElement.getBoundingClientRect().top);
     console.log(elementTop)
     if (elementTop <= scrollPointDown) {
         logo.classList.add("minimise-logo");
