@@ -1,3 +1,6 @@
+document.addEventListener("DOMContentLoaded", () => {
+    taskInput.focus()});
+
 // New tasks buttons listeners
 const addNewTaskBtnLow = document.getElementById("addNewTaskBtn-LOW")
 const addNewTaskBtnMed = document.getElementById("addNewTaskBtn-MED")
@@ -46,6 +49,9 @@ function taskAddition(e) {
         requestAnimationFrame(() => {
             newListItem.classList.add("effect-static")})
 
+        // Sort the list high to low
+        
+        
         //Reset the input box
         taskInput.value = "";
         taskInput.placeholder = "What do you need to do?";
@@ -111,20 +117,19 @@ function taskCancel(e) {
 
 // Minimise header on scroll
 window.addEventListener("scroll", () => {
-    const scrollPointDown = 210;
-    const scrollPointUp = 185;
-    const logo = document.querySelector("#logo");
-    const subheading = document.querySelector("#subheading");
-    console.log(window.scrollY)
-    if (window.scrollY > scrollPointDown) {
+    const scrollPointDown = 4;
+    const scrollPointUp = 16;
+    const targetElement = document.querySelector("#logo");
+    elementTop = targetElement.getBoundingClientRect.floor().top
+    console.log(elementTop)
+    if (elementTop <= scrollPointDown) {
         logo.classList.add("minimise-logo");
         subheading.classList.add("subhead-hide");
     }
-    if (window.scrollY <= scrollPointUp){
+    if (elementTop > scrollPointUp){
         logo.classList.remove("minimise-logo");
         subheading.classList.remove("subhead-hide");
     }
     {
-    once: true
-    }
-});
+        once: true
+    };})
