@@ -1,15 +1,10 @@
-// document.addEventListener("DOMContentLoaded", () => {
-//     taskInput.focus()});
-
-// New tasks buttons listeners
+// New task buttons listeners
 const addNewTaskBtnLow = document.getElementById("addNewTaskBtn-LOW")
 const addNewTaskBtnMed = document.getElementById("addNewTaskBtn-MED")
 const addNewTaskBtnHig = document.getElementById("addNewTaskBtn-HIG")
 addNewTaskBtnLow.addEventListener("click", taskAddition)
 addNewTaskBtnMed.addEventListener("click", taskAddition)
 addNewTaskBtnHig.addEventListener("click", taskAddition)
-
-
 
 ///Global variables///
 const taskInput = document.getElementById("taskInput");
@@ -20,28 +15,34 @@ const pastTasks = document.getElementById("pastTaskList");
 ////Functions///
 // Resize input box
 taskInput.addEventListener("input", () => {
-    console.log("input")
-        // Reset the height to calculate the scroll height accurately
-        taskInput.style.height = "auto";
-
-        // Set the height to match the content
-        taskInput.style.height = `${taskInput.scrollHeight}px`;
-        console.log("resize")
+        taskInput.style.height = `${taskInput.scrollHeight}px`; // Set the height to match the content
 })
 
+// Enter key defaults to low P task
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        // taskAddition(e);
+    }
+})
+
+/////////////// Enter key is not working. Need to refactor this so the enter key calls a nested function and works with a null input //////////
 
 // New tasks
 function taskAddition(e) {
     e.preventDefault();
+    let priority = e.target.closest("button").id;
+    
+    /// CREATE NESTED FUNCTION HERE ///
     if (taskInput.value.trim()) {
         //Create a new list item
         let newListItem = document.createElement("div");
-        let priority = e.target.closest("button").id;
+        // let priority = e.target.closest("button").id;
         newListItem.classList.add("list-item")
 
         // Classify and style according to priority
         switch (priority) {
-            case "addNewTaskBtn-LOW":
+            case ("addNewTaskBtn-LOW"|| null ):
             newListItem.classList.add("task-lw");
             break;
 
@@ -61,7 +62,9 @@ function taskAddition(e) {
         requestAnimationFrame(() => {
             newListItem.classList.add("effect-static")})
 
-        // Sort the list high to low
+        /// END NESTED FUNCTION HERE ///
+
+        
         
         
         //Reset the input box
@@ -71,16 +74,17 @@ function taskAddition(e) {
         taskInput.style.height = "auto";
         taskInput.focus();
 
+         // Sort the list high to low
+
         // Register the new buttons as event listeners
         const newCompleteBtn = newListItem.querySelector("#completeTaskBtn");
         const newCancelBtn = newListItem.querySelector("#cancelTaskBtn");
         newCompleteBtn.addEventListener("click", taskComplete);
         newCancelBtn.addEventListener("click", taskCancel);
     } else {
-        //No task value, issue a warning
+        // No task value, issue a warning
         taskInput.placeholder = "Task is missing content!";
         taskInput.classList.add("warning");
-
     }
 }
 
