@@ -60,6 +60,7 @@ form textarea {
     color: #FFF;
     overflow: hidden;
     resize: none;
+    transition: height .2s ease-out;
 }
 
 .warning::placeholder {

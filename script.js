@@ -15,6 +15,7 @@ const pastTasks = document.getElementById("pastTaskList");
 ////Functions///
 // Resize input box
 taskInput.addEventListener("input", () => {
+        taskInput.style.height = "auto";
         taskInput.style.height = `${taskInput.scrollHeight}px`; // Set the height to match the content
 })
 
@@ -32,7 +33,7 @@ document.addEventListener("keydown", (e) => {
 function taskAddition(e) {
     e.preventDefault();
     let priority = e.target.closest("button").id;
-    
+
     /// CREATE NESTED FUNCTION HERE ///
     if (taskInput.value.trim()) {
         //Create a new list item
