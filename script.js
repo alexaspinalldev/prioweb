@@ -10,6 +10,8 @@ addNewTaskBtnHig.addEventListener("click", taskAddition)
 const taskInput = document.getElementById("taskInput");
 const openTasks = document.getElementById("openTaskList");
 const pastTasks = document.getElementById("pastTaskList");
+const openTasksSec = document.getElementById("openTasks");
+const pastTasksSec = document.getElementById("pastTasks");
 
 
 //// ---------- Functions ---------- ///
@@ -43,7 +45,6 @@ function taskDivCreate(priority) {
         newListItem.classList.add("list-item")
 
         // Classify and style according to priority. If undefined assume low.
-        console.log(priority);
         switch (priority) {
             case ("addNewTaskBtn-LOW"):
                 newListItem.classList.add("task-lw");
@@ -111,6 +112,14 @@ function taskComplete(e) {
         //Remove the old task from the old list
         taskToComplete.parentNode.removeChild(taskToComplete);
         // taskInput.focus();
+
+        // Get the number of children of #pastTasks, if >0, remove hiding classes
+        let pastTaskCount = pastTasksSec.getElementsByClassName("list-item");
+        if (pastTaskCount.length <= 1) {
+            // The first task reveals the box
+            pastTasksSec.classList.remove("element-hide");
+            pastTasksSec.classList.remove("zero-opac");
+        } // Any subsequent tasks do nothing
     }
 }
 
