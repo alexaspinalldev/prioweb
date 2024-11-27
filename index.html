@@ -30,29 +30,18 @@
         <form id="taskForm">
             <textarea class="form-control-lg" type="textarea" autofocus="true" wrap="soft" rows="1" id="taskInput" placeholder="What do you need to do?"></textarea>
             <div class="task-button-cont">
-                <button type="button" class="btn button btn-success task-button addNewTaskBtn-LOW" id="addNewTaskBtn-LOW"><i class="fa-solid fa-plus"></i></button>
-                <button type="button" class="btn button btn-warning task-button addNewTaskBtn-MED" id="addNewTaskBtn-MED"><i class="fa-solid fa-plus"></i></button>
-                <button type="button" class="btn button btn-danger task-button addNewTaskBtn-HIG" id="addNewTaskBtn-HIG"><i class="fa-solid fa-plus"></i></button>
+                <button type="button" class="btn button btn-success task-button addNewTaskBtn-LOW" id="addNewTaskBtn-LOW" aria-label="Add low priority task"><i class="fa-solid fa-plus"></i></button>
+                <button type="button" class="btn button btn-warning task-button addNewTaskBtn-MED" id="addNewTaskBtn-MED" aria-label="Add medium priority task"><i class="fa-solid fa-plus"></i></button>
+                <button type="button" class="btn button btn-danger task-button addNewTaskBtn-HIG" id="addNewTaskBtn-HIG" aria-label="Add high priority task"><i class="fa-solid fa-plus"></i></button>
             </div>
         </form>
-        <!-- <i id="warningText"></i> -->
-    </div>
-    <!-- <div class="row">
-    <div class="col-4"><button type="button" class="btn btn-outline-danger" data-bs-toggle="button">High</button></div>
-    <div class="col-4"><button type="button" class="btn btn-outline-warning" data-bs-toggle="button">Medium</button></div>
-    <div class="col-4"><button type="button" class="btn btn-outline-success" data-bs-toggle="button">Low</button>
-    </div> -->
+    </div>   
     <div id="hint"><p>Enter your first task into the box to get started. Choose its priority using the low, medium and high buttons.</p>
         <p>When it's complete, mark it using the Task Complete button, or cancel it using the red trash icon.</p></div>
     <section class="mt-5 element-hide zero-opac" id="openTasks">
     <h3>Open Tasks</h3>
     <ul class="task-list" id="openTaskList">
-        <!-- script fill -->
-         <!-- <div class="list-item"> -->
-        <!-- <li>TEXT TEST</li>
-        <button type="submit" class="btn button btn-success" id="completeTaskBtn"><i class="fa-solid fa-check"></i></button>
-        <button type="submit" class="btn button btn-danger" id="cancelTaskBtn"><i class="fa-solid fa-x"></i></button>
-         </div> -->
+                <!-- script fill -->
     </ul>
     </section>
 
@@ -64,7 +53,7 @@
     </section>
 </main>
 <footer class="mt-auto d-flex justify-content-center gap-3 align-items-baseline mb-2">
-<i id="copyright">© Alex Aspinall <span id="year"></span></i><a href="https://github.com/alexaspinalldev" alt="Alex Aspinall Github page" target="_blank"><i id="fa-github" class="fa-brands fa-github"></i></a>
+<i id="copyright">© Alex Aspinall <span id="year"></span></i><a href="https://github.com/alexaspinalldev" alt="Github logo" alt="Alex Aspinall's Github account" target="_blank"><i id="fa-github" class="fa-brands fa-github"></i></a>
 </footer>
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

@@ -69,8 +69,8 @@ function taskDivCreate(priority) {
 
         newListItem.classList.add("task-effect-in")
         newListItem.innerHTML = `<li>${taskInput.value.trim()}</li>
-        <button type="button" class="btn button btn-success" id="completeTaskBtn"><i class="fa-solid fa-check"></i></button>
-        <button type="button" class="btn button btn-danger" id="cancelTaskBtn"><i class="fa-solid fa-trash-can"></i></button>`;
+        <button type="button" class="btn button btn-success" id="completeTaskBtn" aria-label="Mark task complete"><i class="fa-solid fa-check"></i></button>
+        <button type="button" class="btn button btn-danger" id="cancelTaskBtn" aria-label="Cancel task"><i class="fa-solid fa-trash-can"></i></button>`;
         openTasks.appendChild(newListItem);
         requestAnimationFrame(() => {
             newListItem.classList.add("effect-static")
