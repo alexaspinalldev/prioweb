@@ -12,10 +12,10 @@ const openTasks = document.getElementById("openTaskList");
 const pastTasks = document.getElementById("pastTaskList");
 
 
-////Functions///
-// Resize input box
+//// ---------- Functions ---------- ///
+// Resize input box on input
 taskInput.addEventListener("input", () => {
-        taskInput.style.height = "auto";
+        taskInput.style.height = "auto"; // This ensures it is resized on every input in case it was wrong to start with
         taskInput.style.height = `${taskInput.scrollHeight}px`; // Set the height to match the content
 })
 
@@ -23,36 +23,42 @@ taskInput.addEventListener("input", () => {
 document.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
         e.preventDefault();
-        // taskAddition(e);
+        taskDivCreate(); // Send an undefined input
     }
 })
 
-/////////////// Enter key is not working. Need to refactor this so the enter key calls a nested function and works with a null input //////////
-
-// New tasks
+// New tasks - button prioritisation
 function taskAddition(e) {
     e.preventDefault();
     let priority = e.target.closest("button").id;
+    taskDivCreate(priority);
+}
 
-    /// CREATE NESTED FUNCTION HERE ///
+// New tasks - create the div
+function taskDivCreate(priority) {
     if (taskInput.value.trim()) {
         //Create a new list item
         let newListItem = document.createElement("div");
         // let priority = e.target.closest("button").id;
         newListItem.classList.add("list-item")
 
-        // Classify and style according to priority
+        // Classify and style according to priority. If undefined assume low.
+        console.log(priority);
         switch (priority) {
-            case ("addNewTaskBtn-LOW"|| null ):
-            newListItem.classList.add("task-lw");
-            break;
+            case ("addNewTaskBtn-LOW"):
+                newListItem.classList.add("task-lw");
+                break;
 
             case "addNewTaskBtn-MED":
-            newListItem.classList.add("task-md");
-            break;
+                newListItem.classList.add("task-md");
+                break;
 
             case "addNewTaskBtn-HIG":
-            newListItem.classList.add("task-hi");
+                newListItem.classList.add("task-hi");
+                break;
+
+            default:
+                newListItem.classList.add("task-lw"); // Default used for error handling robustness
         }
 
         newListItem.classList.add("task-effect-in")
@@ -61,13 +67,9 @@ function taskAddition(e) {
         <button type="button" class="btn button btn-danger" id="cancelTaskBtn"><i class="fa-solid fa-trash-can"></i></button>`;
         openTasks.appendChild(newListItem);
         requestAnimationFrame(() => {
-            newListItem.classList.add("effect-static")})
+            newListItem.classList.add("effect-static")
+        })
 
-        /// END NESTED FUNCTION HERE ///
-
-        
-        
-        
         //Reset the input box
         taskInput.value = "";
         taskInput.placeholder = "What do you need to do?";
@@ -75,7 +77,7 @@ function taskAddition(e) {
         taskInput.style.height = "auto";
         taskInput.focus();
 
-         // Sort the list high to low
+        // Sort the list high to low (tbc)
 
         // Register the new buttons as event listeners
         const newCompleteBtn = newListItem.querySelector("#completeTaskBtn");
