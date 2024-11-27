@@ -120,6 +120,13 @@ form textarea {
     top: 30px;
 } */
 
+#hint {
+font-style: italic;
+margin-top: 10vh;
+transition: opacity .2s ease-out;
+}
+
+
 /* --------------- TASK LISTS --------------- */
 
 .task-list {

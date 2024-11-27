@@ -12,9 +12,14 @@ const openTasks = document.getElementById("openTaskList");
 const pastTasks = document.getElementById("pastTaskList");
 const openTasksSec = document.getElementById("openTasks");
 const pastTasksSec = document.getElementById("pastTasks");
+const hint = document.getElementById("hint");
 
 
 //// ---------- Functions ---------- ///
+// Page load animations
+
+
+
 // Resize input box on input
 taskInput.addEventListener("input", () => {
         taskInput.style.height = "auto"; // This ensures it is resized on every input in case it was wrong to start with
@@ -74,9 +79,16 @@ function taskDivCreate(priority) {
         // Get the number of children of #openTasks, if >0, remove hiding classes
         let openTaskCount = openTasksSec.getElementsByClassName("list-item");
         if (openTaskCount.length <= 1) {
+            // Hide the hint
+            requestAnimationFrame(() => {
+                hint.classList.add("zero-opac");
+            })
+            hint.classList.add("element-hide");
             // The first task reveals the box
             openTasksSec.classList.remove("element-hide");
             openTasksSec.classList.remove("zero-opac");
+            
+            
         } // Any subsequent tasks do nothing
 
         //Reset the input box
