@@ -71,6 +71,14 @@ function taskDivCreate(priority) {
             newListItem.classList.add("effect-static")
         })
 
+        // Get the number of children of #openTasks, if >0, remove hiding classes
+        let openTaskCount = openTasksSec.getElementsByClassName("list-item");
+        if (openTaskCount.length <= 1) {
+            // The first task reveals the box
+            openTasksSec.classList.remove("element-hide");
+            openTasksSec.classList.remove("zero-opac");
+        } // Any subsequent tasks do nothing
+
         //Reset the input box
         taskInput.value = "";
         taskInput.placeholder = "What do you need to do?";
