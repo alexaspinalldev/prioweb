@@ -13,7 +13,7 @@ const pastTasks = document.getElementById("pastTaskList");
 const openTasksSec = document.getElementById("openTasks");
 const pastTasksSec = document.getElementById("pastTasks");
 const hint = document.getElementById("hint");
-const myTaskArray = []
+const myTaskCollection = {} // Declare an object that we will drop task objects into
 
 
 //// ---------- Functions ---------- ///
@@ -37,6 +37,7 @@ myTaskArray = (document.cookie);
     document.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
             e.preventDefault();
+            let priority = low;
             taskArrayAdd(); // Send an undefined input
         }
     })
@@ -44,14 +45,14 @@ myTaskArray = (document.cookie);
     // New task - create object and add it to array
     function taskArrayAdd(e) {
         e.preventDefault();
-        let newTask;
-        newTask.value = taskInput.value.trim()
-        newTask.id = (new Date().getTime());
-        newTask.priority = e.target.closest("button").id;
-        /// Need to ^ include code to handle null input
-        console.log(newTask);
-        myTaskArray.push(newTask);
-        console.log(newTaskArray);
+        let newTaskId = "T" + (new Date().getTime());
+        myTaskCollection[newTaskId] = {
+            value: taskInput.value.trim(),
+            priority: e.target.closest("button").id
+            /// Need to ^ include code to handle null input. Probably ought to declare this variable before building the obj. ChatGPT has a cool idea for this
+        };
+        console.log(newTaskId);
+        console.log(myTaskCollection);
 
         
         // Task list - store/update cookie
