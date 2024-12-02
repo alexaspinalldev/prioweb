@@ -2,9 +2,9 @@
 const addNewTaskBtnLow = document.getElementById("addNewTaskBtn-LOW")
 const addNewTaskBtnMed = document.getElementById("addNewTaskBtn-MED")
 const addNewTaskBtnHig = document.getElementById("addNewTaskBtn-HIG")
-addNewTaskBtnLow.addEventListener("click", taskAddition)
-addNewTaskBtnMed.addEventListener("click", taskAddition)
-addNewTaskBtnHig.addEventListener("click", taskAddition)
+addNewTaskBtnLow.addEventListener("click", taskArrayAdd)
+addNewTaskBtnMed.addEventListener("click", taskArrayAdd)
+addNewTaskBtnHig.addEventListener("click", taskArrayAdd)
 
 ///Global variables///
 const taskInput = document.getElementById("taskInput");
@@ -13,11 +13,18 @@ const pastTasks = document.getElementById("pastTaskList");
 const openTasksSec = document.getElementById("openTasks");
 const pastTasksSec = document.getElementById("pastTasks");
 const hint = document.getElementById("hint");
-const taskArray = []
+const myTaskArray = []
 
 
 //// ---------- Functions ---------- ///
-// Page load animations
+// Page load - look for a cookie
+document.addEventListener("DOMContentLoaded", () => {
+myTaskArray = (document.cookie);
+// fucntion to build the list)
+// cookie is a string not an array so this won't work
+});
+
+// Page load - animations
 
 // New task addition
     // Resize input box on input
@@ -30,21 +37,29 @@ const taskArray = []
     document.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
             e.preventDefault();
-            taskDivCreate(); // Send an undefined input
+            taskArrayAdd(); // Send an undefined input
         }
     })
 
-    // New tasks - button prioritisation
-    function taskAddition(e) {
+    // New task - create object and add it to array
+    function taskArrayAdd(e) {
         e.preventDefault();
-        let priority = e.target.closest("button").id;
-        taskDivCreate(priority);
+        let newTask;
+        newTask.value = taskInput.value.trim()
+        newTask.id = (new Date().getTime());
+        newTask.priority = e.target.closest("button").id;
+        /// Need to ^ include code to handle null input
+        console.log(newTask);
+        myTaskArray.push(newTask);
+        console.log(newTaskArray);
+
+        
+        // Task list - store/update cookie
+        let myTasksString = // Something
+        document.cookie = "myTasks=" + myTasksString;
     }
 
-    // New task - create object and add it to array
-
-
-    // Task list - store a cookie
+    // ------------------------------------------------------------------------------------------ //
 
     // New task - compare the new array to the existing list
     // New tasks - create the div
