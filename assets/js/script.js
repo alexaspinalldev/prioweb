@@ -44,6 +44,9 @@ const taskArray = []
     // New task - create object and add it to array
 
 
+    // Task list - store a cookie
+
+    // New task - compare the new array to the existing list
     // New tasks - create the div
     function taskDivCreate(priority) {
         if (taskInput.value.trim()) {
