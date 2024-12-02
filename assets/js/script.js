@@ -13,104 +13,107 @@ const pastTasks = document.getElementById("pastTaskList");
 const openTasksSec = document.getElementById("openTasks");
 const pastTasksSec = document.getElementById("pastTasks");
 const hint = document.getElementById("hint");
+const taskArray = []
 
 
 //// ---------- Functions ---------- ///
 // Page load animations
 
+// New task addition
+    // Resize input box on input
+    taskInput.addEventListener("input", () => {
+            taskInput.style.height = "auto"; // This ensures it is resized on every input in case it was wrong to start with
+            taskInput.style.height = `${taskInput.scrollHeight}px`; // Set the height to match the content
+    })
 
-
-// Resize input box on input
-taskInput.addEventListener("input", () => {
-        taskInput.style.height = "auto"; // This ensures it is resized on every input in case it was wrong to start with
-        taskInput.style.height = `${taskInput.scrollHeight}px`; // Set the height to match the content
-})
-
-// Enter key defaults to low P task
-document.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-        e.preventDefault();
-        taskDivCreate(); // Send an undefined input
-    }
-})
-
-// New tasks - button prioritisation
-function taskAddition(e) {
-    e.preventDefault();
-    let priority = e.target.closest("button").id;
-    taskDivCreate(priority);
-}
-
-// New tasks - create the div
-function taskDivCreate(priority) {
-    if (taskInput.value.trim()) {
-        //Create a new list item
-        let newListItem = document.createElement("div");
-        // let priority = e.target.closest("button").id;
-        newListItem.classList.add("list-item")
-
-        // Classify and style according to priority. If undefined assume low.
-        switch (priority) {
-            case ("addNewTaskBtn-LOW"):
-                newListItem.classList.add("task-lw");
-                break;
-
-            case "addNewTaskBtn-MED":
-                newListItem.classList.add("task-md");
-                break;
-
-            case "addNewTaskBtn-HIG":
-                newListItem.classList.add("task-hi");
-                break;
-
-            default:
-                newListItem.classList.add("task-lw"); // Default used for error handling robustness
+    // Enter key defaults to low P task
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            taskDivCreate(); // Send an undefined input
         }
+    })
 
-        newListItem.classList.add("task-effect-in")
-        newListItem.innerHTML = `<li>${taskInput.value.trim()}</li>
-        <button type="button" class="btn button btn-success" id="completeTaskBtn" aria-label="Mark task complete"><i class="fa-solid fa-check"></i></button>
-        <button type="button" class="btn button btn-danger" id="cancelTaskBtn" aria-label="Cancel task"><i class="fa-solid fa-trash-can"></i></button>`;
-        openTasks.appendChild(newListItem);
-        requestAnimationFrame(() => {
-            newListItem.classList.add("effect-static")
-        })
-
-        // Get the number of children of #openTasks, if >0, remove hiding classes
-        let openTaskCount = openTasksSec.getElementsByClassName("list-item");
-        if (openTaskCount.length <= 1) {
-            // Hide the hint
-            requestAnimationFrame(() => {
-                hint.classList.add("zero-opac");
-            })
-            hint.classList.add("element-hide");
-            // The first task reveals the box
-            openTasksSec.classList.remove("element-hide");
-            openTasksSec.classList.remove("zero-opac");
-            
-            
-        } // Any subsequent tasks do nothing
-
-        //Reset the input box
-        taskInput.value = "";
-        taskInput.placeholder = "What do you need to do?";
-        taskInput.classList.remove("warning");
-        taskInput.style.height = "auto";
-        taskInput.focus();
-
-        // Sort the list high to low (tbc)
-
-        // Register the new buttons as event listeners
-        const newCompleteBtn = newListItem.querySelector("#completeTaskBtn");
-        const newCancelBtn = newListItem.querySelector("#cancelTaskBtn");
-        newCompleteBtn.addEventListener("click", taskComplete);
-        newCancelBtn.addEventListener("click", taskCancel);
-    } else {
-        // No task value, issue a warning
-        taskInput.placeholder = "Task is missing content!";
-        taskInput.classList.add("warning");
+    // New tasks - button prioritisation
+    function taskAddition(e) {
+        e.preventDefault();
+        let priority = e.target.closest("button").id;
+        taskDivCreate(priority);
     }
-}
+
+    // New task - create object and add it to array
+
+
+    // New tasks - create the div
+    function taskDivCreate(priority) {
+        if (taskInput.value.trim()) {
+            //Create a new list item
+            let newListItem = document.createElement("div");
+            // let priority = e.target.closest("button").id;
+            newListItem.classList.add("list-item")
+
+            // Classify and style according to priority. If undefined assume low.
+            switch (priority) {
+                case ("addNewTaskBtn-LOW"):
+                    newListItem.classList.add("task-lw");
+                    break;
+
+                case "addNewTaskBtn-MED":
+                    newListItem.classList.add("task-md");
+                    break;
+
+                case "addNewTaskBtn-HIG":
+                    newListItem.classList.add("task-hi");
+                    break;
+
+                default:
+                    newListItem.classList.add("task-lw"); // Default used for error handling robustness
+            }
+
+            newListItem.classList.add("task-effect-in")
+            newListItem.innerHTML = `<li>${taskInput.value.trim()}</li>
+            <button type="button" class="btn button btn-success" id="completeTaskBtn" aria-label="Mark task complete"><i class="fa-solid fa-check"></i></button>
+            <button type="button" class="btn button btn-danger" id="cancelTaskBtn" aria-label="Cancel task"><i class="fa-solid fa-trash-can"></i></button>`;
+            openTasks.appendChild(newListItem);
+            requestAnimationFrame(() => {
+                newListItem.classList.add("effect-static")
+            })
+
+            // Get the number of children of #openTasks, if >0, remove hiding classes
+            let openTaskCount = openTasksSec.getElementsByClassName("list-item");
+            if (openTaskCount.length <= 1) {
+                // Hide the hint
+                requestAnimationFrame(() => {
+                    hint.classList.add("zero-opac");
+                })
+                hint.classList.add("element-hide");
+                // The first task reveals the box
+                openTasksSec.classList.remove("element-hide");
+                openTasksSec.classList.remove("zero-opac");
+                
+                
+            } // Any subsequent tasks do nothing
+
+            //Reset the input box
+            taskInput.value = "";
+            taskInput.placeholder = "What do you need to do?";
+            taskInput.classList.remove("warning");
+            taskInput.style.height = "auto";
+            taskInput.focus();
+
+            // Sort the list high to low (tbc)
+
+            // Register the new buttons as event listeners
+            const newCompleteBtn = newListItem.querySelector("#completeTaskBtn");
+            const newCancelBtn = newListItem.querySelector("#cancelTaskBtn");
+            newCompleteBtn.addEventListener("click", taskComplete);
+            newCancelBtn.addEventListener("click", taskCancel);
+        } else {
+            // No task value, issue a warning
+            taskInput.placeholder = "Task is missing content!";
+            taskInput.classList.add("warning");
+        }
+    }
 
 // Complete tasks
 function taskComplete(e) {
