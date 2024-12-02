@@ -20,7 +20,7 @@ const myTaskArray = []
 // Page load - look for a cookie
 document.addEventListener("DOMContentLoaded", () => {
 myTaskArray = (document.cookie);
-// fucntion to build the list)
+// fucntion to build the list
 // cookie is a string not an array so this won't work
 });
 
