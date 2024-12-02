@@ -37,22 +37,24 @@ myTaskArray = (document.cookie);
     document.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
             e.preventDefault();
-            let priority = low;
             taskArrayAdd(); // Send an undefined input
         }
     })
 
     // New task - create object and add it to array
     function taskArrayAdd(e) {
-        e.preventDefault();
+        console.log(e)
+        // e.preventDefault();
         let newTaskId = "T" + (new Date().getTime());
         myTaskCollection[newTaskId] = {
             value: taskInput.value.trim(),
-            priority: e.target.closest("button").id
-            /// Need to ^ include code to handle null input. Probably ought to declare this variable before building the obj. ChatGPT has a cool idea for this
+            priority: e.target.closest("button")?.dataset.priority || "low",
+            // Any future task properties will go here
         };
         console.log(newTaskId);
         console.log(myTaskCollection);
+    // ------------------------------------------------------------------------------------------ // TODO NEXT 02/12/24
+   // Issue with enter key
 
         
         // Task list - store/update cookie
