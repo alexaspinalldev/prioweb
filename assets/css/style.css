@@ -86,6 +86,7 @@ form textarea {
 }
 
 .btn-warning {
+    --bs-btn-color: #FFF;
     --bs-btn-hover-bg: #e6ac00; /* Darker yellow for hover */
     --bs-btn-hover-border-color: #d99a00; /* Slightly darker border for hover */
 }
@@ -103,7 +104,7 @@ form textarea {
     padding-left: 12px;
 }
 
-.addNewTaskBtn-LOW {
+/* .addNewTaskBtn-LOW {
     z-index: 3;
 }
 
@@ -112,15 +113,15 @@ form textarea {
     color: #FFF;
     /* position: absolute;
     left: 0;
-    transition: left 0.5s ease-out, bottom 0.5s ease-out; */
-}
+    transition: left 0.5s ease-out, bottom 0.5s ease-out;
+} */
 
-.addNewTaskBtn-HIG {
+/* .addNewTaskBtn-HIG {
     z-index: 1;
-    /* position: absolute;
+    position: absolute;
     left: 0;
-    transition: left 0.5s ease-out, top 0.5s ease-out; */
-}
+    transition: left 0.5s ease-out, top 0.5s ease-out;
+} */
 
 /* .task-button-cont:hover .addNewTaskBtn-MED {
     left: 52px;
@@ -136,6 +137,7 @@ form textarea {
 /* font-style: italic; */
 margin-top: 10vh;
 transition: opacity .2s ease-out;
+font-size: 1.2rem;
 }
 
 
