@@ -1,4 +1,4 @@
-// New task buttons listeners
+/// New task buttons listeners ///
 const addNewTaskBtnLow = document.getElementById("addNewTaskBtn-LOW")
 const addNewTaskBtnMed = document.getElementById("addNewTaskBtn-MED")
 const addNewTaskBtnHig = document.getElementById("addNewTaskBtn-HIG")
@@ -6,7 +6,7 @@ addNewTaskBtnLow.addEventListener("click", taskArrayAdd)
 addNewTaskBtnMed.addEventListener("click", taskArrayAdd)
 addNewTaskBtnHig.addEventListener("click", taskArrayAdd)
 
-///Global variables///
+/// Global variables ///
 const taskInput = document.getElementById("taskInput");
 const openTasks = document.getElementById("openTaskList");
 const pastTasks = document.getElementById("pastTaskList");
@@ -16,13 +16,16 @@ const hint = document.getElementById("hint");
 const myTaskCollection = {} // Declare an object that we will drop task objects into
 
 
-//// ---------- Functions ---------- ///
+//// ---------------------------------------- Functions ---------------------------------------- ///
 // Page load - look for a cookie
 document.addEventListener("DOMContentLoaded", () => {
-myTaskArray = (document.cookie);
-// fucntion to build the list
-// cookie is a string not an array so this won't work
-});
+let retrievedTasks = (document.cookie); // Retrieve the cookied JSON
+console.log(retrievedTasks);
+let myTaskCollection = JSON.parse(retrievedTasks.substring(retrievedTasks.indexOf("{"))); // Convert the JSON back to an object
+// GITPOD STORES A COOKIE THIS IS JUST A WORKAROUND
+console.log(myTaskCollection);
+buildList();
+})
 
 // Page load - animations
 
@@ -41,7 +44,7 @@ myTaskArray = (document.cookie);
         }
     })
 
-    // New task - create object and add it to array
+    // New task - create object and add it to the collection
     function taskArrayAdd(e) {
         if (taskInput.value.trim()) { // Task input has a value in it
             let newTaskId = "T" + (new Date().getTime()); // Generate a uniqueID
@@ -61,9 +64,9 @@ myTaskArray = (document.cookie);
             taskInput.style.height = "auto";
             taskInput.focus();
 
-            // Task list - store/update cookie
-            //let myTasksString = // Something
-            //document.cookie = "myTasks=" + myTasksString;
+            // Update the cookies with the new list of tasks as a JSON
+            let tasksToCache = JSON.stringify(myTaskCollection);
+            document.cookie =  tasksToCache;
             
         } else {
             // No task value, issue a warning
@@ -74,6 +77,11 @@ myTaskArray = (document.cookie);
 
     // ------------------------------------------------------------------------------------------ // TODO NEXT 03/12/24
 
+// Build the list
+    function buildList() {
+        console.log("Imagine I just built the list in front of your eyes");
+
+    }
     // New task - compare the new array to the existing list
     // New tasks - create the div
     function taskDivCreate(priority) {
