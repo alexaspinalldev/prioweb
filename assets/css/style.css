@@ -83,7 +83,11 @@ form textarea {
     text-shadow: 0 0 3px #797979;
     --bs-btn-hover-color: var(--bs-white);
     --bs-btn-active-color: var(--bs-white);
+}
 
+.btn-warning {
+    --bs-btn-hover-bg: #e6ac00; /* Darker yellow for hover */
+    --bs-btn-hover-border-color: #d99a00; /* Slightly darker border for hover */
 }
 
 .task-button {
