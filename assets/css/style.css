@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Righteous&display=swap');
 
+/* Variables */
+:root {
+    --low-p-green: #198754;
+    --med-p-yellow: #ffc107;
+    --high-p-red: #dc3545;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -75,6 +82,7 @@ form textarea {
     font-size: 1rem;
     text-shadow: 0 0 3px #797979;
     --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-active-color: var(--bs-white);
 
 }
 
@@ -177,15 +185,15 @@ transition: opacity .2s ease-out;
 }
 
 .task-hi li {
-    border: 1px solid #dc3545;
+    border: 1px solid var(--high-p-red);
 }
 
 .task-md li {
-    border: 1px solid #ffc107;
+    border: 1px solid var(--med-p-yellow);
 }
 
 .task-lw li {
-    border: 1px solid #198754;
+    border: 1px solid var(--low-p-green);
 }
 
 .task-comp li {
@@ -206,7 +214,7 @@ footer {
 }
 
 #fa-github:hover {
-    color: #198754;
+    color: var(--low-p-green);
     transition: color .2s ease-out, font-size .2s ease-out;
     font-size: 1.5rem;
 }
