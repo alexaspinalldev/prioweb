@@ -37,37 +37,47 @@ myTaskArray = (document.cookie);
     document.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
             e.preventDefault();
-            taskArrayAdd(); // Send an undefined input
+            taskArrayAdd(e); // Send an undefined input
         }
     })
 
     // New task - create object and add it to array
     function taskArrayAdd(e) {
-        console.log(e)
-        // e.preventDefault();
-        let newTaskId = "T" + (new Date().getTime());
-        myTaskCollection[newTaskId] = {
-            value: taskInput.value.trim(),
-            priority: e.target.closest("button")?.dataset.priority || "low",
-            // Any future task properties will go here
-        };
-        console.log(newTaskId);
-        console.log(myTaskCollection);
-    // ------------------------------------------------------------------------------------------ // TODO NEXT 02/12/24
-   // Issue with enter key
+        if (taskInput.value.trim()) { // Task input has a value in it
+            let newTaskId = "T" + (new Date().getTime()); // Generate a uniqueID
+            myTaskCollection[newTaskId] = {
+                // Add task properties
+                value: taskInput.value.trim(),
+                priority: e.target.closest("button")?.dataset.priority || "low",
+                // Any future task properties will go here
+            };
+            console.log(newTaskId);
+            console.log(myTaskCollection);
 
-        
-        // Task list - store/update cookie
-        let myTasksString = // Something
-        document.cookie = "myTasks=" + myTasksString;
+            //Reset the input box
+            taskInput.value = "";
+            taskInput.placeholder = "What do you need to do?";
+            taskInput.classList.remove("warning");
+            taskInput.style.height = "auto";
+            taskInput.focus();
+
+            // Task list - store/update cookie
+            //let myTasksString = // Something
+            //document.cookie = "myTasks=" + myTasksString;
+            
+        } else {
+            // No task value, issue a warning
+            taskInput.placeholder = "Task is missing content!";
+            taskInput.classList.add("warning");
+        }
     }
 
-    // ------------------------------------------------------------------------------------------ //
+    // ------------------------------------------------------------------------------------------ // TODO NEXT 03/12/24
 
     // New task - compare the new array to the existing list
     // New tasks - create the div
     function taskDivCreate(priority) {
-        if (taskInput.value.trim()) {
+        
             //Create a new list item
             let newListItem = document.createElement("div");
             // let priority = e.target.closest("button").id;
@@ -115,13 +125,6 @@ myTaskArray = (document.cookie);
                 
             } // Any subsequent tasks do nothing
 
-            //Reset the input box
-            taskInput.value = "";
-            taskInput.placeholder = "What do you need to do?";
-            taskInput.classList.remove("warning");
-            taskInput.style.height = "auto";
-            taskInput.focus();
-
             // Sort the list high to low (tbc)
 
             // Register the new buttons as event listeners
@@ -129,12 +132,8 @@ myTaskArray = (document.cookie);
             const newCancelBtn = newListItem.querySelector("#cancelTaskBtn");
             newCompleteBtn.addEventListener("click", taskComplete);
             newCancelBtn.addEventListener("click", taskCancel);
-        } else {
-            // No task value, issue a warning
-            taskInput.placeholder = "Task is missing content!";
-            taskInput.classList.add("warning");
-        }
-    }
+        } 
+    
 
 // Complete tasks
 function taskComplete(e) {
