@@ -13,19 +13,18 @@ const pastTasks = document.getElementById("pastTaskList");
 const openTasksSec = document.getElementById("openTasks");
 const pastTasksSec = document.getElementById("pastTasks");
 const hint = document.getElementById("hint");
-const myTaskCollection = {} // Declare an object that we will drop task objects into
+var myTaskCollection = {} // Declare an object that we will drop task objects into
 
 
-//// ---------------------------------------- Functions ---------------------------------------- ///
+//// --------------------------------------------------------- Functions --------------------------------------------------------------- ///
 // Page load - look for a cookie
-document.addEventListener("DOMContentLoaded", () => {
-let retrievedTasks = (document.cookie); // Retrieve the cookied JSON
-console.log(retrievedTasks);
-let myTaskCollection = JSON.parse(retrievedTasks.substring(retrievedTasks.indexOf("{"))); // Convert the JSON back to an object
-// GITPOD STORES A COOKIE THIS IS JUST A WORKAROUND
-console.log(myTaskCollection);
-buildList();
-})
+    document.addEventListener("DOMContentLoaded", () => {
+    let retrievedTasks = localStorage.getItem("myTasks"); // Retrieve the JSON from local storage
+    console.log("Retrieved tasks: " + retrievedTasks);
+    myTaskCollection = JSON.parse(retrievedTasks); // Convert the JSON back to an object
+    console.log("My task collection: " + myTaskCollection);
+    buildList();
+    })
 
 // Page load - animations
 
@@ -54,8 +53,8 @@ buildList();
                 priority: e.target.closest("button")?.dataset.priority || "low",
                 // Any future task properties will go here
             };
-            console.log(newTaskId);
-            console.log(myTaskCollection);
+            console.log("Added task: " + newTaskId);
+            console.log("Updated task list: " + myTaskCollection);
 
             //Reset the input box
             taskInput.value = "";
@@ -66,7 +65,7 @@ buildList();
 
             // Update the cookies with the new list of tasks as a JSON
             let tasksToCache = JSON.stringify(myTaskCollection);
-            document.cookie =  tasksToCache;
+            localStorage.setItem("myTasks", tasksToCache);
             
         } else {
             // No task value, issue a warning
