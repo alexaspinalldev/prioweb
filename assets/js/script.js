@@ -21,8 +21,7 @@ var myTaskCollection = {} // Declare an object that we will drop task objects in
     document.addEventListener("DOMContentLoaded", () => {
     let retrievedTasks = localStorage.getItem("myTasks"); // Retrieve the JSON from local storage
     console.log("Retrieved tasks: " + retrievedTasks);
-    myTaskCollection = JSON.parse(retrievedTasks); // Convert the JSON back to an object
-    console.log("My task collection: " + myTaskCollection);
+    myTaskCollection = retrievedTasks ? JSON.parse(retrievedTasks) : {}; // Convert the JSON back to an object. Ignore if null.
     buildList();
     })
 
@@ -103,7 +102,6 @@ var myTaskCollection = {} // Declare an object that we will drop task objects in
             // Apply all the relevant classes
                 newListItem.classList.add("list-item");
                 newListItem.classList.add("task-effect-in")
-
                 newListItem.innerHTML = `<li>${task.content}</li>
                 <button type="button" class="btn button btn-success" id="completeTaskBtn" aria-label="Mark task complete"><i class="fa-solid fa-check"></i></button>
                 <button type="button" class="btn button btn-danger" id="cancelTaskBtn" aria-label="Cancel task"><i class="fa-solid fa-trash-can"></i></button>`;
