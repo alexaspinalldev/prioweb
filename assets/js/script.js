@@ -80,13 +80,11 @@ var myTaskCollection = {} // Declare an object that we will drop task objects in
     function buildList(newTaskId,action) {
         // If passed no argument, we want to build the DOM list from scratch
         if (!newTaskId) {
-            console.log("WE GOT A LIST A NEW CAPTAIN");
+            console.log("Render list from scratch");
             // Build the list
-            for (let task of Object.entries(myTaskCollection)) {
-                console.log(task); //// ISSUE
+            for (let [key,value] of Object.entries(myTaskCollection)) {
                 let newListItem = document.createElement("div"); // Create a new list item
-                
-                switch (task.priority) { // Classify and style according to priority. If undefined assume low.
+                switch (value.priority) { // Classify and style according to priority. If undefined assume low.
                     case ("low"):
                         newListItem.classList.add("task-lw");
                         break;
@@ -102,7 +100,7 @@ var myTaskCollection = {} // Declare an object that we will drop task objects in
             // Apply all the relevant classes
                 newListItem.classList.add("list-item");
                 newListItem.classList.add("task-effect-in")
-                newListItem.innerHTML = `<li>${task.content}</li>
+                newListItem.innerHTML = `<li>${value.content}</li>
                 <button type="button" class="btn button btn-success" id="completeTaskBtn" aria-label="Mark task complete"><i class="fa-solid fa-check"></i></button>
                 <button type="button" class="btn button btn-danger" id="cancelTaskBtn" aria-label="Cancel task"><i class="fa-solid fa-trash-can"></i></button>`;
                 openTasks.appendChild(newListItem);
