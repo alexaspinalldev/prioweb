@@ -67,6 +67,9 @@ var myTaskCollection = {} // Declare an object that we will drop task objects in
             let tasksToCache = JSON.stringify(myTaskCollection);
             localStorage.setItem("myTasks", tasksToCache);
             
+            // Update the DOM list
+            buildList(newTaskId);
+
         } else {
             // No task value, issue a warning
             taskInput.placeholder = "Task is missing content!";
@@ -77,9 +80,28 @@ var myTaskCollection = {} // Declare an object that we will drop task objects in
     // ------------------------------------------------------------------------------------------ // TODO NEXT 03/12/24
 
 // Build the list
-    function buildList() {
-        console.log("Imagine I just built the list in front of your eyes");
-
+    function buildList(newTaskId,action) {
+        // If passed no argument, we want to build the DOM list from scratch
+        if (!newTaskId) {
+            console.log("WE GOT A LIST A NEW CAPTAIN");
+            // Build the list
+        } else {
+            // If passed an argument we want to add/remove only the new item to the existing DOM list
+            console.log("We just got one item here")
+            switch (action) {
+                case("adding"):
+                    console.log("Adding " + newTaskId);
+                    break;
+                case("removing"):
+                    console.log("Removing " + newTaskId);
+                    break;
+                case("updating"):
+                    console.log("Updating " + newTaskId);
+                    break;
+                default:
+                    console.error("Don't know what to do with this!");
+            }
+        }
     }
     // New task - compare the new array to the existing list
     // New tasks - create the div
@@ -91,7 +113,7 @@ var myTaskCollection = {} // Declare an object that we will drop task objects in
             newListItem.classList.add("list-item")
 
             // Classify and style according to priority. If undefined assume low.
-            switch (priority) {
+            switch (this.priority) {
                 case ("addNewTaskBtn-LOW"):
                     newListItem.classList.add("task-lw");
                     break;
