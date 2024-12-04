@@ -49,7 +49,7 @@ var myTaskCollection = {} // Declare an object that we will drop task objects in
             let newTaskId = "T" + (new Date().getTime()); // Generate a uniqueID
             myTaskCollection[newTaskId] = {
                 // Add task properties
-                value: taskInput.value.trim(),
+                content: taskInput.value.trim(),
                 priority: e.target.closest("button")?.dataset.priority || "low",
                 // Any future task properties will go here
             };
@@ -68,7 +68,7 @@ var myTaskCollection = {} // Declare an object that we will drop task objects in
             localStorage.setItem("myTasks", tasksToCache);
             
             // Update the DOM list
-            buildList(newTaskId);
+            buildList(newTaskId,"adding");
 
         } else {
             // No task value, issue a warning
@@ -77,14 +77,68 @@ var myTaskCollection = {} // Declare an object that we will drop task objects in
         }
     }
 
-    // ------------------------------------------------------------------------------------------ // TODO NEXT 03/12/24
-
-// Build the list
+// Build the DOM list
     function buildList(newTaskId,action) {
         // If passed no argument, we want to build the DOM list from scratch
         if (!newTaskId) {
             console.log("WE GOT A LIST A NEW CAPTAIN");
             // Build the list
+            for (let task of Object.entries(myTaskCollection)) {
+                console.log(task); //// ISSUE
+                let newListItem = document.createElement("div"); // Create a new list item
+                
+                switch (task.priority) { // Classify and style according to priority. If undefined assume low.
+                    case ("low"):
+                        newListItem.classList.add("task-lw");
+                        break;
+                    case "medium":
+                        newListItem.classList.add("task-md");
+                        break;
+                    case "high":
+                        newListItem.classList.add("task-hi");
+                        break;
+                    default:
+                        newListItem.classList.add("task-lw"); // Default used for error handling robustness
+                }
+            // Apply all the relevant classes
+                newListItem.classList.add("list-item");
+                newListItem.classList.add("task-effect-in")
+
+                newListItem.innerHTML = `<li>${task.content}</li>
+                <button type="button" class="btn button btn-success" id="completeTaskBtn" aria-label="Mark task complete"><i class="fa-solid fa-check"></i></button>
+                <button type="button" class="btn button btn-danger" id="cancelTaskBtn" aria-label="Cancel task"><i class="fa-solid fa-trash-can"></i></button>`;
+                openTasks.appendChild(newListItem);
+                requestAnimationFrame(() => {
+                    newListItem.classList.add("effect-static")
+                })
+
+            // Get the number of children of #openTasks, if this is the first loop
+                let openTaskCount = openTasksSec.getElementsByClassName("list-item");
+                if (openTaskCount.length === 1) {
+                    requestAnimationFrame(() => { // Hide the hint text
+                        hint.classList.add("zero-opac");
+                    })
+                    hint.classList.add("element-hide");
+                    // The first task reveals the box
+                    openTasksSec.classList.remove("element-hide");
+                    openTasksSec.classList.remove("zero-opac");
+                    } // Any subsequent tasks do nothing
+
+            // Sort the list high to low (tbc)
+
+             // Register the new buttons as event listeners
+                const newCompleteBtn = newListItem.querySelector("#completeTaskBtn");
+                const newCancelBtn = newListItem.querySelector("#cancelTaskBtn");
+                newCompleteBtn.addEventListener("click", taskComplete);
+                newCancelBtn.addEventListener("click", taskCancel);
+            }
+
+
+
+
+
+
+            
         } else {
             // If passed an argument we want to add/remove only the new item to the existing DOM list
             console.log("We just got one item here")
