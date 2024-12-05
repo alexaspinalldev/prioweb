@@ -105,7 +105,7 @@ function buildList(newTaskId, action) {
             // Apply all the relevant classes
             newListItem.classList.add("list-item");
             newListItem.classList.add("task-effect-in")
-            newListItem.innerHTML = `<li>${value.content} <span class="task-time">Created - ${value.created}</span></li>
+            newListItem.innerHTML = `<li><div class="task-content">${value.content}</div><div class="task-time">Added ${value.created}</div></li>
                 <button type="button" class="btn button btn-success" id="completeTaskBtn" aria-label="Mark task complete"><i class="fa-solid fa-check"></i></button>
                 <button type="button" class="btn button btn-danger" id="cancelTaskBtn" aria-label="Cancel task"><i class="fa-solid fa-trash-can"></i></button>`;
             openTasks.appendChild(newListItem);

@@ -144,10 +144,11 @@ font-size: 1.2rem;
 /* --------------- TASK LISTS --------------- */
 
 .task-list {
+    display: flex;
+    flex-direction: column;
     min-height: 15vh;
     list-style-type: none;
     padding: 10px;
-    /* background-color: #13191b; */
     background: linear-gradient(180deg, rgba(19, 25, 27,1) 0%, rgba(19, 25, 27,0) 100%);
     border-radius: var(--bs-border-radius-lg);
     border: 2px solid #253237;
@@ -156,7 +157,8 @@ font-size: 1.2rem;
     /* border-image-source: linear-gradient(180deg, rgba(37,50,55,1) 0%, rgba(37,50,55,0) 100%);
     border-image-slice: 1;
     background-clip: padding-box; */
-    text-align: left;
+    /* background-color: #13191b; */
+
 }
 
 .list-item {
@@ -164,23 +166,8 @@ font-size: 1.2rem;
     margin-bottom: .5rem;
     gap: 12px;
     transition: transform 0.5s ease-out, opacity 0.5s ease-out; /* Smooth slide-in and out effect */
-    
-}
-
-.task-effect-in {
-    transform: translateY(-100%); /* Start down from top of screem */
-    opacity: 0;
-}
-
-.task-effect-in.effect-static {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.task-effect-out {
-    transform: translateY(-100%); /* Slide off top of screen */
-    opacity: 0;
-
+    max-width: 100%;
+    width: 100%;    
 }
 
 .task-list li {
@@ -190,7 +177,24 @@ font-size: 1.2rem;
     flex-grow: 1;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
+}
+
+.task-content {
+    overflow-wrap: break-word;
+    flex: 1 1 auto;
+    text-align: left;
+    width: 0;
+}
+
+.task-time {
+    font-style: italic;
+    color: gray;
+    font-size: .8rem;
+    text-wrap: nowrap;
+    width: min-content;
+    margin-left: 12px;
+    display: none;
 }
 
 .task-hi li {
@@ -209,12 +213,22 @@ font-size: 1.2rem;
     border: 1px solid #FFF;
 }
 
-.task-time {
-    font-style: italic;
-    color: gray;
-    font-size: .8rem;
-    text-wrap: nowrap;
+.task-effect-in {
+    transform: translateY(-100%); /* Start down from top of screem */
+    opacity: 0;
 }
+
+.task-effect-in.effect-static {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.task-effect-out {
+    transform: translateY(-100%); /* Slide off top of screen */
+    opacity: 0;
+
+}
+
 
 /* --------------- FOOTER --------------- */
 
@@ -240,6 +254,13 @@ footer {
 @media screen and (min-width: 576px) {
     .task-button-cont {
         flex-direction: row;
+    }
+    
+}
+
+@media screen and (min-width: 768px) {
+    .task-time {
+        display: block;
     }
     
 }
