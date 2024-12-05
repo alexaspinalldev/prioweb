@@ -2,9 +2,9 @@
 const addNewTaskBtnLow = document.getElementById("addNewTaskBtn-LOW")
 const addNewTaskBtnMed = document.getElementById("addNewTaskBtn-MED")
 const addNewTaskBtnHig = document.getElementById("addNewTaskBtn-HIG")
-addNewTaskBtnLow.addEventListener("click", taskArrayAdd)
-addNewTaskBtnMed.addEventListener("click", taskArrayAdd)
-addNewTaskBtnHig.addEventListener("click", taskArrayAdd)
+addNewTaskBtnLow.addEventListener("click", taskCollectionAdd)
+addNewTaskBtnMed.addEventListener("click", taskCollectionAdd)
+addNewTaskBtnHig.addEventListener("click", taskCollectionAdd)
 
 /// Global variables ///
 const taskInput = document.getElementById("taskInput");
@@ -37,22 +37,23 @@ taskInput.addEventListener("input", () => {
 document.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
         e.preventDefault();
-        taskArrayAdd(e); // Send an undefined input
+        taskCollectionAdd(e); // Send an undefined input
     }
 })
 
 // New task - create object and add it to the collection
-function taskArrayAdd(e) {
+function taskCollectionAdd(e) {
     if (taskInput.value.trim()) { // Task input has a value in it
         let newTaskId = "T" + (new Date().getTime()); // Generate a uniqueID
         myTaskCollection[newTaskId] = {
             // Add task properties
             content: taskInput.value.trim(),
-            priority: e.target.closest("button")?.dataset.priority || "low",
+            priority: e.target.closest("button")?.dataset.priority || "0-low",
             // Any future task properties will go here
         };
 
-        // Update the cookies with the new list of tasks as a JSON
+        // Update local storage with the new list of tasks as a JSON
+        sortList() // Sort myTaskCollection
         let tasksToCache = JSON.stringify(myTaskCollection);
         localStorage.setItem("myTasks", tasksToCache);
 
@@ -78,18 +79,18 @@ function buildList(newTaskId, action) {
     // If passed no argument...
     if (!newTaskId) {
         // ...build the list from scratch
-        for (let [key, value] of Object.entries(myTaskCollection)) {
+        for (let [value] of Object.entries(myTaskCollection)) {
             let newListItem = document.createElement("div"); // Create a new list item
 
             // Need to encapsulate this in a function
             switch (value.priority) { // Classify and style according to priority. If undefined assume low.
-                case ("low"):
+                case ("0-low"):
                     newListItem.classList.add("task-lw");
                     break;
-                case "medium":
+                case "1-medium":
                     newListItem.classList.add("task-md");
                     break;
-                case "high":
+                case "2-high":
                     newListItem.classList.add("task-hi");
                     break;
                 default:
@@ -118,7 +119,7 @@ function buildList(newTaskId, action) {
                 openTasksSec.classList.remove("zero-opac");
             } // Any subsequent tasks do nothing
 
-            // Sort the list high to low (tbc)
+            
 
             // Register the new buttons as event listeners
             const newCompleteBtn = newListItem.querySelector("#completeTaskBtn");
@@ -132,6 +133,8 @@ function buildList(newTaskId, action) {
         switch (action) {
             case ("adding"):
                 console.log("Adding " + newTaskId);
+                //buildListSingle(newTaskId,adding)
+
                 break;
             case ("removing"):
                 console.log("Removing " + newTaskId);
@@ -142,11 +145,19 @@ function buildList(newTaskId, action) {
             default:
                 console.error("Don't know what to do with this!");
         }
+
     }
 }
-// New task - compare the new array to the existing list
+
+function sortList() {
+// Let's cache the user's sorting preference. Have an option on the DOM to change the sorting preference.
+}
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------//
+
+// New task - compare the new collection to the existing list
 // New tasks - create the div
-function taskDivCreate(priority) {
+function buildListSingle(newTaskId) {
 
     //Create a new list item
     let newListItem = document.createElement("div");
