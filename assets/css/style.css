@@ -188,6 +188,9 @@ font-size: 1.2rem;
     padding: .5rem .75rem;
     font-size: 1rem;
     flex-grow: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .task-hi li {
@@ -204,6 +207,13 @@ font-size: 1.2rem;
 
 .task-comp li {
     border: 1px solid #FFF;
+}
+
+.task-time {
+    font-style: italic;
+    color: gray;
+    font-size: .8rem;
+    text-wrap: nowrap;
 }
 
 /* --------------- FOOTER --------------- */
