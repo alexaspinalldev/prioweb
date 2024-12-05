@@ -1,11 +1,3 @@
-/// New task buttons listeners ///
-const addNewTaskBtnLow = document.getElementById("addNewTaskBtn-LOW")
-const addNewTaskBtnMed = document.getElementById("addNewTaskBtn-MED")
-const addNewTaskBtnHig = document.getElementById("addNewTaskBtn-HIG")
-addNewTaskBtnLow.addEventListener("click", taskCollectionAdd)
-addNewTaskBtnMed.addEventListener("click", taskCollectionAdd)
-addNewTaskBtnHig.addEventListener("click", taskCollectionAdd)
-
 /// Global variables ///
 const taskInput = document.getElementById("taskInput");
 const openTasks = document.getElementById("openTaskList");
@@ -15,32 +7,42 @@ const pastTasksSec = document.getElementById("pastTasks");
 const hint = document.getElementById("hint");
 var myTaskCollection = {} // Declare an object that we will drop task objects into
 
+/// Listeners ///
+    const addNewTaskBtnLow = document.getElementById("addNewTaskBtn-LOW")
+    const addNewTaskBtnMed = document.getElementById("addNewTaskBtn-MED")
+    const addNewTaskBtnHig = document.getElementById("addNewTaskBtn-HIG")
+    addNewTaskBtnLow.addEventListener("click", taskCollectionAdd)
+    addNewTaskBtnMed.addEventListener("click", taskCollectionAdd)
+    addNewTaskBtnHig.addEventListener("click", taskCollectionAdd)
+
+    // Page load - look for a cookie
+    document.addEventListener("DOMContentLoaded", () => {
+        let retrievedTasks = localStorage.getItem("myTasks"); // Retrieve the JSON from local storage
+        myTaskCollection = retrievedTasks ? JSON.parse(retrievedTasks) : {}; // Convert the JSON back to an object. Ignore if null.
+        buildList();
+    })
+
+    // Page load - animations tbc
+
+    // Resize input box on input
+    taskInput.addEventListener("input", () => {
+        taskInput.style.height = "auto"; // This ensures it is resized on every input in case it was wrong to start with
+        taskInput.style.height = `${taskInput.scrollHeight}px`; // Set the height to match the content
+    })
+
+    // Enter key defaults to low P task
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            taskCollectionAdd(e); // Send an undefined input
+        }
+    })
+
+
 
 //// --------------------------------------------------------- Functions --------------------------------------------------------------- ///
-// Page load - look for a cookie
-document.addEventListener("DOMContentLoaded", () => {
-    let retrievedTasks = localStorage.getItem("myTasks"); // Retrieve the JSON from local storage
-    myTaskCollection = retrievedTasks ? JSON.parse(retrievedTasks) : {}; // Convert the JSON back to an object. Ignore if null.
-    buildList();
-})
 
-// Page load - animations
-
-// New task addition
-// Resize input box on input
-taskInput.addEventListener("input", () => {
-    taskInput.style.height = "auto"; // This ensures it is resized on every input in case it was wrong to start with
-    taskInput.style.height = `${taskInput.scrollHeight}px`; // Set the height to match the content
-})
-
-// Enter key defaults to low P task
-document.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-        e.preventDefault();
-        taskCollectionAdd(e); // Send an undefined input
-    }
-})
-
+/// New Tasks
 // New task - create object and add it to the collection
 function taskCollectionAdd(e) {
     if (taskInput.value.trim()) { // Task input has a value in it
@@ -49,11 +51,12 @@ function taskCollectionAdd(e) {
             // Add task properties
             content: taskInput.value.trim(),
             priority: e.target.closest("button")?.dataset.priority || "0-low",
+            created: new Date(), // This will just be for the user - the TaskId is better for sorting
             // Any future task properties will go here
         };
 
         // Update local storage with the new list of tasks as a JSON
-        sortList() // Sort myTaskCollection
+        sortList() // Sort myTaskCollection now the new task has all its properties
         let tasksToCache = JSON.stringify(myTaskCollection);
         localStorage.setItem("myTasks", tasksToCache);
 
@@ -74,12 +77,14 @@ function taskCollectionAdd(e) {
     }
 }
 
-// Build the DOM list
+
+
+/// Building the DOM list
 function buildList(newTaskId, action) {
     // If passed no argument...
     if (!newTaskId) {
         // ...build the list from scratch
-        for (let [value] of Object.entries(myTaskCollection)) {
+        for (let [key,value] of Object.entries(myTaskCollection)) {
             let newListItem = document.createElement("div"); // Create a new list item
 
             // Need to encapsulate this in a function
