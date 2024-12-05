@@ -52,6 +52,7 @@ function taskCollectionAdd(e) {
             content: taskInput.value.trim(),
             priority: e.target.closest("button")?.dataset.priority || "0-low",
             created: (new Date().toLocaleString()), // This will just be for the user - the TaskId is better for sorting
+            state: "open",
             // Any future task properties will go here
         };
 
