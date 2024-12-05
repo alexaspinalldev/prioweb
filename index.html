@@ -40,7 +40,17 @@
     <div id="hint"><p>Enter your first task into the box to get started. Set its priority <strong><span style="color: var(--low-p-green);">low</span></strong>, <strong><span style="color: var(--med-p-yellow);">medium</span></strong> or <strong><span style="color: var(--high-p-red);">high</span></strong>.</p>
         <p><strong>Long press <i class="fa-regular fa-square-plus"></i></strong> to open detail view.</p></div>
     <section class="mt-5 element-hide zero-opac" id="openTasks">
-    <h3>Open Tasks</h3>
+    <div class="list-header">
+        <h3>Open Tasks</h3>
+        <div class="dropdown">
+            <button class="btn btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Sort </button>
+            <ul class="dropdown-menu .dropdown-menu-end dropdown-menu-dark">
+                <li><a class="dropdown-item active" onclick="">Priority (Default)</a> </a></li>
+                <li><a class="dropdown-item" onclick="">A-Z</a></li>
+                <li><a class="dropdown-item" onclick="">Date added</a></li>
+            </ul>
+        </div>
+    </div>
     <ul class="task-list" id="openTaskList">
                 <!-- script fill -->
     </ul>

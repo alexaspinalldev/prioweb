@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Righteous&display=swap');
 
-/* Variables */
+/* ------------------------------ Variables ------------------------------ */
 :root {
     --low-p-green: #198754;
     --med-p-yellow: #ffc107;
@@ -141,7 +141,35 @@ font-size: 1.2rem;
 }
 
 
-/* --------------- TASK LISTS --------------- */
+/* ------------------------------ TASK LISTS ------------------------------ */
+
+.list-header {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    align-items: center;
+    position: relative;
+}
+
+.list-header > h3 {
+ margin: 0;
+}
+
+.dropdown {
+    position: absolute;
+    right: 0;
+}
+
+.dropdown-toggle {
+    border: 2px solid gray;
+    --bs-btn-border-color: gray;
+    --bs-btn-hover-border-color: #FFF;
+    color: #FFF;
+}
+
+.dropdown-menu {
+    /* inset: 0px 0px auto 0px !important;  */
+}
 
 .task-list {
     display: flex;
@@ -230,7 +258,7 @@ font-size: 1.2rem;
 }
 
 
-/* --------------- FOOTER --------------- */
+/* ------------------------------ FOOTER ------------------------------ */
 
 footer {
 }
