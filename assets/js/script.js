@@ -6,6 +6,7 @@ const openTasksSec = document.getElementById("openTasks");
 const pastTasksSec = document.getElementById("pastTasks");
 const hint = document.getElementById("hint");
 var myTaskCollection = {} // Declare an object that we will drop task objects into
+const sortingPreference = "priority" // Default to sorting by priority, can replace this with a cookie later.
 
 /// Listeners ///
     const addNewTaskBtnLow = document.getElementById("addNewTaskBtn-LOW")
@@ -15,12 +16,22 @@ var myTaskCollection = {} // Declare an object that we will drop task objects in
     addNewTaskBtnMed.addEventListener("click", taskCollectionAdd)
     addNewTaskBtnHig.addEventListener("click", taskCollectionAdd)
 
-    // Page load - look for a cookie
+    // Page load - look for remote data
     document.addEventListener("DOMContentLoaded", () => {
         let retrievedTasks = localStorage.getItem("myTasks"); // Retrieve the JSON from local storage
         myTaskCollection = retrievedTasks ? JSON.parse(retrievedTasks) : {}; // Convert the JSON back to an object. Ignore if null.
         buildList();
     })
+
+    // Page load - look for sorting preference cookie
+    document.addEventListener("DOMContentLoaded", () => {
+        let retrievedSort = document.cookie // This is not good enough, need to actually set and find a cookie by name but that is effort
+        sortingPreference = retrievedSort
+        // also update the classlist active state
+    })
+
+    // Sorting dropdown
+    //should update sortingPreference variable and the classlist active state
 
     // Page load - animations tbc
 
@@ -53,11 +64,11 @@ function taskCollectionAdd(e) {
             priority: e.target.closest("button")?.dataset.priority || "0-low",
             created: (new Date().toLocaleString()), // This will just be for the user - the TaskId is better for sorting
             state: "open",
+            sortedIndex: 0, // Custom sorting will change this figure
             // Any future task properties will go here
         };
 
         // Update local storage with the new list of tasks as a JSON
-        sortList() // Sort myTaskCollection now the new task has all its properties
         let tasksToCache = JSON.stringify(myTaskCollection);
         localStorage.setItem("myTasks", tasksToCache);
 
@@ -85,6 +96,10 @@ function buildList(newTaskId, action) {
     // If passed no argument...
     if (!newTaskId) {
         // ...build the list from scratch
+        
+        sortList()
+        // use sortedList to build the DOM list, not what you've done below
+
         for (let [key,value] of Object.entries(myTaskCollection)) {
             let newListItem = document.createElement("div"); // Create a new list item
 
@@ -124,10 +139,8 @@ function buildList(newTaskId, action) {
                 openTasksSec.classList.remove("element-hide");
                 openTasksSec.classList.remove("zero-opac");
             } // Any subsequent tasks do nothing
-
             
-
-            // Register the new buttons as event listeners
+            // Register the new task buttons as event listeners
             const newCompleteBtn = newListItem.querySelector("#completeTaskBtn");
             const newCancelBtn = newListItem.querySelector("#cancelTaskBtn");
             newCompleteBtn.addEventListener("click", taskComplete);
@@ -156,9 +169,9 @@ function buildList(newTaskId, action) {
 }
 
 function sortList() {
-// Let's cache the user's sorting preference. Have an option on the DOM to change the sorting preference.
+    // Sort according to user's sortedPreference
+    // Return a A NEW ARRAY sortedList
 }
-
 //--------------------------------------------------------------------------------------------------------------------------------------------------------//
 
 // New task - compare the new collection to the existing list
