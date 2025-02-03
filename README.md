@@ -1,6 +1,6 @@
 # *Prio* - The Intelligent Task Management App
 
-Prio to-do app designed to help you make the most of spare moments. Using Prio, you can quickly log things you need to get round to, prioritise and sort them, then mark them complete.
+Prio to-do app is designed to help you make the most of spare moments. Using Prio, you can quickly log things you need to get round to, prioritise and sort them, then mark them complete.
 
 Prio currently uses HTML5, CSS3, a little Bootstrap 5.3 and Javascript.
 
@@ -19,7 +19,8 @@ I intend to continue this project through to a full-stack application as I progr
 - Centrally stored tasks and lists
 - Automatic AI categorisation
 
-HTMX + Express, Sortable.js, Prisma ORM, BetterAuth
+The full version will use:
+HTMX + Express, Swapy.js, Prisma ORM, BetterAuth, Tailwind
 
 ## Libraries and Resources used
 - Canva
