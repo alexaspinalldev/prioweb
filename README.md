@@ -19,6 +19,7 @@ I intend to continue this project through to a full-stack application as I progr
 - Centrally stored tasks and lists
 - Automatic AI categorisation
 
+HTMX + Express, Sortable.js, Prisma ORM, BetterAuth
 
 ## Libraries and Resources used
 - Canva
